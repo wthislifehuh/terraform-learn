@@ -1,3 +1,7 @@
+// Create elastic IP (EIP)
+// Public IP: changing IP address when EC2 instance restarted
+// EIP: public IP available to attach to EC2 instance (by passing Ec2 instance ID)
+
 provider "aws" {
     region = "eu-west-2"
 }
@@ -8,9 +12,10 @@ resource "aws_instance" "ec2" {
 }
 
 resource "aws_eip" "elasticeip" {
-    instance = aws_instance.ec2.id
+    instance = aws_instance.ec2.id // resource, resource name, attribute
 }
 
 output "EIP" {
     value = aws_eip.elasticeip.public_ip
 }
+// To run instance
